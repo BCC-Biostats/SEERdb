@@ -5,18 +5,23 @@
 #' @param db_directory path to directory where data files are held
 #' @param hospital_files vector of names of hospital files
 #'
-#' @return
+#' @return a list of dataframes from each given hospital file
 #' @export
 #'
 #' @examples
+#' hospitalDB <- SEERdb::get_hospital_data("../../master data files - SEER Medicare 2024/")
 #'
+#'
+#' hospitalDB <- SEERdb::get_hospital_data(
+#'                 "../../master data files - SEER Medicare 2024/",
+#'                 c("hospital1996.withzip.txt.gz", "hospital2000.withzip.txt.gz")
+#'                 )
 #'
 
 get_hospital_data <- function(
     db_directory = ".",
     hospital_files = NULL
   ) {
-
 
   # If there is no given vector of hospital files, prompt the users
   if (is.null({{ hospital_files }})) {
@@ -78,15 +83,22 @@ get_hospital_data <- function(
         unzip_current_file <- sub("\\.gz$", "", current_file)
 
 
-        read_data <- read_fwf(unzip_current_file,
+        read_data <- suppressWarnings(suppressMessages(read_fwf(unzip_current_file,
                          col_positions = fwf_positions(
-                           start = hospital_file_lbl$Start,
-                           end = hospital_file_lbl$Stop,
-                           col_names = hospital_file_lbl$name
+                           start = SEERdb::hospital_file_labels$Start,
+                           end = SEERdb::hospital_file_labels$Stop,
+                           col_names = SEERdb::hospital_file_labels$name
                          )
+        )))
+
+        read_data <- labelled::set_variable_labels(read_data,
+                                      .labels = setNames(
+                                        as.list(SEERdb::hospital_file_labels$label),
+                                        SEERdb::hospital_file_labels$name
+                                      )
         )
 
-        results_list[[current_file]] <- read_data
+        results_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hospital_files[i])]] <- read_data
 
         file.remove(unzip_current_file)
 
@@ -109,6 +121,57 @@ get_hospital_data <- function(
     } else {
 
       cat("\nAll hospital files should include the word 'hospital'\n")
+
+    }
+
+  }
+  else {
+
+    # Get files in the directory
+    files_in_directory <- list.files(path = db_directory)
+
+    # check that the files list is all in the directory
+    if (all(hospital_files %in% files_in_directory)) {
+
+      results_list <- list()
+
+      for (i in 1:length(hospital_files)) {
+
+        current_file <- paste0(db_directory, hospital_files[i])
+
+        R.utils::gunzip(current_file,
+                        remove = FALSE)
+
+        unzip_current_file <- sub("\\.gz$", "", current_file)
+
+
+        read_data <- suppressWarnings(suppressMessages(read_fwf(unzip_current_file,
+                                                                col_positions = fwf_positions(
+                                                                  start = SEERdb::hospital_file_labels$Start,
+                                                                  end = SEERdb::hospital_file_labels$Stop,
+                                                                  col_names = SEERdb::hospital_file_labels$name
+                                                                )
+        )))
+
+        read_data <- labelled::set_variable_labels(read_data,
+                                      .labels = setNames(
+                                        as.list(SEERdb::hospital_file_labels$label),
+                                        SEERdb::hospital_file_labels$name
+                                      )
+        )
+
+        results_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hospital_files[i])]] <- read_data
+
+        file.remove(unzip_current_file)
+
+      }
+
+    } else {
+
+      stop(paste0(
+        "\n'",
+        hospital_files[!(hospital_files %in% files_in_directory)],
+        "' was not found in given directory"))
 
     }
 

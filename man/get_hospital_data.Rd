@@ -11,6 +11,19 @@ get_hospital_data(db_directory = ".", hospital_files = NULL)
 
 \item{hospital_files}{vector of names of hospital files}
 }
+\value{
+a list of dataframes from each given hospital file
+}
 \description{
 Function will identify all of the hospital datasets in your directory and create a dataset for them
+}
+\examples{
+hospitalDB <- SEERdb::get_hospital_data("../../master data files - SEER Medicare 2024/")
+
+
+hospitalDB <- SEERdb::get_hospital_data(
+                "../../master data files - SEER Medicare 2024/",
+                c("hospital1996.withzip.txt.gz", "hospital2000.withzip.txt.gz")
+                )
+
 }
