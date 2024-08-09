@@ -1,5 +1,11 @@
+---
+output: github_document
+---
+
 
 # SEERdb <a href="https://github.com/BCC-Biostats/SEERdb"><img src="man/figures/SEERdbhex.png" align="right" height="138" /></a>
+
+
 
 ## Overview
 
