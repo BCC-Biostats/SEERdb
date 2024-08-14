@@ -17,8 +17,12 @@ size](https://img.shields.io/github/repo-size/BCC-Biostats/SEERdb)
 ## Overview
 
 SEERdb is a package for accessing data from the SEER medicare dataset.
+It expects a directory where SEER medicare zipped files are stored.
+Functions can open these files or build a SQLite database.
 
 ## File types
+
+Thse are the given file types:
 
 - hsp
   - demo
