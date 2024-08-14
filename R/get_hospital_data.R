@@ -33,7 +33,7 @@ get_hospital_data <- function(
       as.vector()
 
     # Show files found and prompt user
-    cat(crayon::blue$bold(paste0("",
+    cat(crayon::blue$bold(paste0("ℹ ",
                length(hospital_files),
                " files found:"
     )))
