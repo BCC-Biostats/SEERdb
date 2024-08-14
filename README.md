@@ -11,12 +11,6 @@ issues](https://img.shields.io/github/issues-closed/BCC-Biostats/SEERdb)
 contributors](https://img.shields.io/github/contributors/BCC-Biostats/SEERdb)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/BCC-Biostats/SEERdb)
-![GitHub commit
-activity](https://img.shields.io/github/commit-activity/m/BCC-Biostats/SEERdb)
-![GitHub pull
-requests](https://img.shields.io/github/issues-pr/BCC-Biostats/SEERdb)
-[![PR’s
-Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 ![GitHub repo
 size](https://img.shields.io/github/repo-size/BCC-Biostats/SEERdb)
 
