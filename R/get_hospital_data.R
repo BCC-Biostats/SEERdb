@@ -33,11 +33,10 @@ get_hospital_data <- function(
       as.vector()
 
     # Show files found and prompt user
-    cat(paste0("     ",
+    cat(crayon::blue$bold(paste0("",
                length(hospital_files),
                " files found:"
-    )
-    )
+    )))
 
     cat("\n\n")
 
@@ -45,7 +44,7 @@ get_hospital_data <- function(
 
     cat("\n\n")
 
-    cat("     Unzip files to create dataset?")
+    cat(crayon::blue$bold("Unzip files to create dataset?"))
 
     cat("\n\n")
 
