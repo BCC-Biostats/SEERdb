@@ -6,7 +6,13 @@
 #' PATIENT_ID and CLM_ID should be used for merging files
 #'
 #' @param db_directory path to directory where data files are held
-#' @param hsp_files vector of names of hsp files
+#' @param hsp_base_files vector of names of hsp.base files
+#' @param hsp_condition_files vector of names of hsp.condition files
+#' @param hsp_occurence_files vector of names of hsp.occurence files
+#' @param hsp_revenue_files vector of names of hsp.revenue files
+#' @param hsp_span_files vector of names of hsp.span files
+#' @param hsp_value_files vector of names of hsp.value files
+#' @param hsp_demo_files vector of names of hsp.demo files
 #'
 #' @return a list of dataframes from each given hsp file
 #' @export
@@ -556,10 +562,332 @@ get_hsp_data <- function(
       )
 
 
+    } else {
+
+      stop("Specify values using function parameters")
+
     }
 
 
+  } else {
+
+    results_list <- list()
+
+    # base file
+    base_list <- list()
+
+    for (i in 1:length(hsp_base_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_base_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.base_labels$Start,
+                                                                       end = SEERdb::hsp.base_labels$Stop,
+                                                                       col_names = SEERdb::hsp.base_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.base_labels$label),
+                                                   SEERdb::hsp.base_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      base_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_base_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # condition file
+    condition_list <- list()
+
+    for (i in 1:length(hsp_condition_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_condition_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.condition_labels$Start,
+                                                                       end = SEERdb::hsp.condition_labels$Stop,
+                                                                       col_names = SEERdb::hsp.condition_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.condition_labels$label),
+                                                   SEERdb::hsp.condition_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      condition_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_condition_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # occurence file
+    ocurrence_list <- list()
+
+    for (i in 1:length(hsp_occurence_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_occurence_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.occurrence_labels$Start,
+                                                                       end = SEERdb::hsp.occurrence_labels$Stop,
+                                                                       col_names = SEERdb::hsp.occurrence_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.occurrence_labels$label),
+                                                   SEERdb::hsp.occurrence_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      ocurrence_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_occurence_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # revenue file
+    revenue_list <- list()
+
+    for (i in 1:length(hsp_revenue_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_revenue_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.revenue_labels$Start,
+                                                                       end = SEERdb::hsp.revenue_labels$Stop,
+                                                                       col_names = SEERdb::hsp.revenue_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.revenue_labels$label),
+                                                   SEERdb::hsp.revenue_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      revenue_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_revenue_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # span file
+    span_list <- list()
+
+    for (i in 1:length(hsp_span_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_span_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.span_labels$Start,
+                                                                       end = SEERdb::hsp.span_labels$Stop,
+                                                                       col_names = SEERdb::hsp.span_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.span_labels$label),
+                                                   SEERdb::hsp.span_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      span_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_span_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # value file
+    value_list <- list()
+
+    for (i in 1:length(hsp_value_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_value_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.value_labels$Start,
+                                                                       end = SEERdb::hsp.value_labels$Stop,
+                                                                       col_names = SEERdb::hsp.value_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.value_labels$label),
+                                                   SEERdb::hsp.value_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      value_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_value_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # demo file
+    demo_list <- list()
+
+    for (i in 1:length(hsp_demo_files)) {
+
+      # Get the current hsp base file
+      current_file <- paste0(db_directory, hsp_demo_files[i])
+
+      # output the current file being worked on
+      cat(current_file)
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::hsp.demo_labels$Start,
+                                                                       end = SEERdb::hsp.demo_labels$Stop,
+                                                                       col_names = SEERdb::hsp.demo_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::hsp.demo_labels$label),
+                                                   SEERdb::hsp.demo_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      demo_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", hsp_demo_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+
+    # get return list
+    results_list <- list(
+      base = base_list,
+      condition = condition_list,
+      ocurrence = ocurrence_list,
+      revenue = revenue_list,
+      span = span_list,
+      value = value_list,
+      demo = demo_list
+    )
+
   }
+
+  return(results_list)
 
 
 }

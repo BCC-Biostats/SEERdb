@@ -19,36 +19,11 @@ output: github_document
 SEERdb is a package for accessing data from the SEER medicare dataset. It expects a directory where SEER medicare zipped files are stored. Functions can open these files or build a SQLite database.
 
 
-## File types
+## Installation
 
-Thse are the given file types:
+To install the package, run the following commands:
 
-* hsp
-  + demo
-  + occurence
-  + revenue
-  + span
-  + value
-* msbf
-  + ab.summary
-  + abcd.summary
-  + cc.summary
-  + oth.cc.summary
-* medpar
-* nch
-  + base
-  + line
-  + demo
-* outpat 
-  + base
-  + condition
-  + occurence
-  + revenue
-  + span
-  + value
-* SEER
-  + colon
-  + lung
-* census
-  + tract.encr
-  + zipcode.unencr
+```r
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("BCC-Biostats/SEERdb")   
+```

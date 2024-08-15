@@ -11,19 +11,20 @@ get_hsp_data(
   hsp_occurence_files = NULL,
   hsp_revenue_files = NULL,
   hsp_span_files = NULL,
-  hsp_value_files = NULL
+  hsp_value_files = NULL,
+  hsp_demo_files = NULL
 )
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{hsp_files}{vector of names of hsp files}
 }
 \value{
-a list of dataframes from each given hospital file
+a list of dataframes from each given hsp file
 }
 \description{
-Function will identify all of the hsp datasets in your directory and create a dataset for them.
+Function will identify all of the hospice claims datasets in your directory and create a dataset for them.
 There are 6 segments provided: base, revenue, condition, occurence, span, and value
 }
 \details{
