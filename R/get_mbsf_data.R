@@ -363,9 +363,6 @@ get_mbsf_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, mbsf_ab_summary_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -405,9 +402,6 @@ get_mbsf_data <- function(
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, mbsf_abcd_summary_files[i])
-
-      # output the current file being worked on
-      cat(current_file)
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -449,9 +443,6 @@ get_mbsf_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, mbsf_cc_summary_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -491,9 +482,6 @@ get_mbsf_data <- function(
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, mbsf_oth_cc_summary_files[i])
-
-      # output the current file being worked on
-      cat(current_file)
 
       # unzip the current file
       R.utils::gunzip(current_file,

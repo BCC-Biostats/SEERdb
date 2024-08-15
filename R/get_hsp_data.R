@@ -581,9 +581,6 @@ get_hsp_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_base_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -623,9 +620,6 @@ get_hsp_data <- function(
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_condition_files[i])
-
-      # output the current file being worked on
-      cat(current_file)
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -667,9 +661,6 @@ get_hsp_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_occurence_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -709,9 +700,6 @@ get_hsp_data <- function(
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_revenue_files[i])
-
-      # output the current file being worked on
-      cat(current_file)
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -753,9 +741,6 @@ get_hsp_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_span_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -796,9 +781,6 @@ get_hsp_data <- function(
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_value_files[i])
 
-      # output the current file being worked on
-      cat(current_file)
-
       # unzip the current file
       R.utils::gunzip(current_file,
                       remove = FALSE)
@@ -838,9 +820,6 @@ get_hsp_data <- function(
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, hsp_demo_files[i])
-
-      # output the current file being worked on
-      cat(current_file)
 
       # unzip the current file
       R.utils::gunzip(current_file,
