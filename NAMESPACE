@@ -2,9 +2,10 @@
 
 export(get_SEER_data)
 export(get_census_data)
+export(get_dme_data)
 export(get_hospital_data)
 export(get_hsp_data)
+export(get_mbsf_data)
 export(get_medpar_data)
-export(get_msbf_data)
 export(get_nch_data)
 export(get_outpat_data)
