@@ -4,12 +4,12 @@
 \alias{get_medpar_data}
 \title{Create medpar dataset}
 \usage{
-get_medpar_data(db_directory = ".", hospital_files = NULL)
+get_medpar_data(db_directory = ".", medpar_files = NULL)
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{medpar_files}{vector of names of hospital files}
 }
 \value{
 a list of dataframes from each given hospital file

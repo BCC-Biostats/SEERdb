@@ -119,7 +119,7 @@ get_hospital_data <- function(
 
     } else {
 
-      cat("\nAll hospital files should include the word 'hospital'\n")
+      stop("All hospital files should include the word 'hospital'")
 
     }
 

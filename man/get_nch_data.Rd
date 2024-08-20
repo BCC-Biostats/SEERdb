@@ -4,12 +4,21 @@
 \alias{get_nch_data}
 \title{Create nch dataset}
 \usage{
-get_nch_data(db_directory = ".", hospital_files = NULL)
+get_nch_data(
+  db_directory = ".",
+  nch_base_files = NULL,
+  nch_demo_files = NULL,
+  nch_line_files = NULL
+)
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{nch_base_files}{vector of names of nch base files}
+
+\item{nch_demo_files}{vector of names of nch demo files}
+
+\item{nch_line_files}{vector of names of nch line files}
 }
 \value{
 a list of dataframes from each given hospital file
