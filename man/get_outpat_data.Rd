@@ -4,15 +4,36 @@
 \alias{get_outpat_data}
 \title{Create outpat dataset}
 \usage{
-get_outpat_data(db_directory = ".", hospital_files = NULL)
+get_outpat_data(
+  db_directory = ".",
+  outpat_base_files = NULL,
+  outpat_condition_files = NULL,
+  outpat_demo_files = NULL,
+  outpat_occurrence_files = NULL,
+  outpat_revenue_files = NULL,
+  outpat_span_files = NULL,
+  outpat_value_files = NULL
+)
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{outpat_base_files}{vector of names of outpat base files}
+
+\item{outpat_condition_files}{vector of names of outpat condition files}
+
+\item{outpat_demo_files}{vector of names of outpat demo files}
+
+\item{outpat_occurrence_files}{vector of names of outpat occurrence files}
+
+\item{outpat_revenue_files}{vector of names of outpat revenue files}
+
+\item{outpat_span_files}{vector of names of outpat span files}
+
+\item{outpat_value_files}{vector of names of outpat value files}
 }
 \value{
-a list of dataframes from each given hospital file
+a list of dataframes from each given outpat file
 }
 \description{
 Function will identify all of the outpat datasets in your directory and create a dataset for them
