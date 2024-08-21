@@ -4,15 +4,15 @@
 \alias{get_SEER_data}
 \title{Create SEER dataset}
 \usage{
-get_SEER_data(db_directory = ".", hospital_files = NULL)
+get_SEER_data(db_directory = ".", SEER_files = NULL)
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{SEER_files}{vector of names of SEER files}
 }
 \value{
-a list of dataframes from each given hospital file
+a list of dataframes from each given SEER file
 }
 \description{
 Function will identify all of the SEER datasets in your directory and create a dataset for them

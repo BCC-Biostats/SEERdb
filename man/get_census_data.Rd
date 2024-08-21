@@ -4,15 +4,21 @@
 \alias{get_census_data}
 \title{Create census dataset}
 \usage{
-get_census_data(db_directory = ".", hospital_files = NULL)
+get_census_data(
+  db_directory = ".",
+  census_tract_files = NULL,
+  census_zipcode_files = NULL
+)
 }
 \arguments{
 \item{db_directory}{path to directory where data files are held}
 
-\item{hospital_files}{vector of names of hospital files}
+\item{census_tract_files}{vector of names of census tract files}
+
+\item{census_zipcode_files}{vector of names of census zipcode files}
 }
 \value{
-a list of dataframes from each given hospital file
+a list of dataframes from each given census file
 }
 \description{
 Function will identify all of the census datasets in your directory and create a dataset for them
