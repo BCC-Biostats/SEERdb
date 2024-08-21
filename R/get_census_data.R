@@ -175,7 +175,7 @@ get_census_data <- function(
         )
 
         # asign the files to the base list
-        demo_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", census_zipcode_files[i])]] <- read_data
+        zipcode_list[[paste0("zipcode", i)]] <- read_data
 
         # remove the unzipped file
         file.remove(unzip_current_file)
