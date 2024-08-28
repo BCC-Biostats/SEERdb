@@ -215,7 +215,7 @@ get_census_data <- function(
 
     # tract file
     tract_list <- list()
-
+    if(length(census_tract_files) > 0) {
     for (i in 1:length(census_tract_files)) {
 
       # Get the current hsp base file
@@ -252,10 +252,11 @@ get_census_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # zipcode file
     zipcode_list <- list()
-
+    if(length(census_zipcode_files) > 0) {
     for (i in 1:length(census_zipcode_files)) {
 
       # Get the current hsp base file
@@ -286,11 +287,12 @@ get_census_data <- function(
       )
 
       # asign the files to the base list
-      demo_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", census_zipcode_files[i])]] <- read_data
+      zipcode_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", census_zipcode_files[i])]] <- read_data
 
       # remove the unzipped file
       file.remove(unzip_current_file)
 
+    }
     }
 
     results_list <- list(

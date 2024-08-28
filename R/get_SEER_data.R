@@ -140,8 +140,8 @@ get_SEER_data <- function(
 
         unzip_current_file <- sub("\\.gz$", "", current_file)
 
-        read_data <- suppressWarnings(suppressMessages(read_fwf(unzip_current_file,
-                                                                col_positions = fwf_positions(
+        read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                col_positions = readr::fwf_positions(
                                                                   start = SEERdb::SEER.input_labels$Start,
                                                                   end = SEERdb::SEER.input_labels$Stop,
                                                                   col_names = SEERdb::SEER.input_labels$name
