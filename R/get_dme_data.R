@@ -91,7 +91,6 @@ get_dme_data <- function(
 
       # base file
       base_list <- list()
-
       for (i in 1:length(dme_base_files)) {
 
         # Get the current hsp base file
@@ -288,10 +287,14 @@ get_dme_data <- function(
     # base file
     base_list <- list()
 
-    for (i in 1:length(dme_base_files)) {
+    if(!is.null({{ dme_base_files }})){
+
+      for (i in 1:length(dme_base_files)) {
+
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, dme_base_files[i])
+
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -323,12 +326,15 @@ get_dme_data <- function(
       # remove the unzipped file
       file.remove(unzip_current_file)
 
+
     }
 
+      }
     # demo file
     demo_list <- list()
+    if(!is.null({{ dme_demo_files }})){
 
-    for (i in 1:length(dme_demo_files)) {
+      for (i in 1:length(dme_demo_files)) {
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, dme_demo_files[i])
@@ -365,10 +371,14 @@ get_dme_data <- function(
 
     }
 
+      }
+
     # line file
     line_list <- list()
 
-    for (i in 1:length(dme_line_files)) {
+    if(!is.null({{ dme_line_files }})){
+
+      for (i in 1:length(dme_line_files)) {
 
       # Get the current hsp base file
       current_file <- paste0(db_directory, dme_line_files[i])
@@ -402,6 +412,8 @@ get_dme_data <- function(
 
       # remove the unzipped file
       file.remove(unzip_current_file)
+
+    }
 
     }
 

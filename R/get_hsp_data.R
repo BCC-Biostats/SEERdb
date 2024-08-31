@@ -44,8 +44,7 @@ get_hsp_data <- function(
                     {{ hsp_occurence_files }},
                     {{ hsp_revenue_files }},
                     {{ hsp_span_files }},
-                    {{ hsp_condition_files }},
-                    {{ hsp_condition_files }},
+                    {{ hsp_value_files }},
                     {{ hsp_demo_files }}
                     )
                   )
@@ -575,7 +574,7 @@ get_hsp_data <- function(
 
     # base file
     base_list <- list()
-
+    if(!is.null({{ hsp_base_files }})){
     for (i in 1:length(hsp_base_files)) {
 
       # Get the current hsp base file
@@ -612,10 +611,11 @@ get_hsp_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # condition file
     condition_list <- list()
-
+    if(!is.null({{ hsp_condition_files }})){
     for (i in 1:length(hsp_condition_files)) {
 
       # Get the current hsp base file
@@ -652,9 +652,12 @@ get_hsp_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # occurence file
     ocurrence_list <- list()
+
+    if(!is.null({{ hsp_occurence_files }})){
 
     for (i in 1:length(hsp_occurence_files)) {
 
@@ -693,9 +696,11 @@ get_hsp_data <- function(
 
     }
 
+    }
+
     # revenue file
     revenue_list <- list()
-
+    if(!is.null({{ hsp_revenue_files }})){
     for (i in 1:length(hsp_revenue_files)) {
 
       # Get the current hsp base file
@@ -732,10 +737,11 @@ get_hsp_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # span file
     span_list <- list()
-
+    if(!is.null({{ hsp_span_files }})){
     for (i in 1:length(hsp_span_files)) {
 
       # Get the current hsp base file
@@ -772,10 +778,11 @@ get_hsp_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # value file
     value_list <- list()
-
+    if(!is.null({{ hsp_value_files }})){
     for (i in 1:length(hsp_value_files)) {
 
       # Get the current hsp base file
@@ -812,10 +819,11 @@ get_hsp_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # demo file
     demo_list <- list()
-
+    if(!is.null({{ hsp_demo_files }})){
     for (i in 1:length(hsp_demo_files)) {
 
       # Get the current hsp base file
@@ -851,6 +859,7 @@ get_hsp_data <- function(
       # remove the unzipped file
       file.remove(unzip_current_file)
 
+    }
     }
 
     # get return list

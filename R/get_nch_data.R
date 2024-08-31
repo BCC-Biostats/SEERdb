@@ -283,7 +283,7 @@ get_nch_data <- function(
 
     # base file
     base_list <- list()
-
+    if(!is.null({{ nch_base_files }})){
     for (i in 1:length(nch_base_files)) {
 
       # Get the current hsp base file
@@ -320,10 +320,11 @@ get_nch_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # demo file
     demo_list <- list()
-
+    if(!is.null({{ nch_demo_files }})){
     for (i in 1:length(nch_demo_files)) {
 
       # Get the current hsp base file
@@ -360,10 +361,11 @@ get_nch_data <- function(
       file.remove(unzip_current_file)
 
     }
+    }
 
     # line file
     line_list <- list()
-
+    if(!is.null({{ nch_line_files }})){
     for (i in 1:length(nch_line_files)) {
 
       # Get the current hsp base file
@@ -399,6 +401,7 @@ get_nch_data <- function(
       # remove the unzipped file
       file.remove(unzip_current_file)
 
+    }
     }
 
     results_list <- list(

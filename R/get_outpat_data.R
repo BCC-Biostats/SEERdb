@@ -562,6 +562,292 @@ get_outpat_data <- function(
 
   } else {
 
+    # base file
+    base_list <- list()
+    if(!is.null({{ outpat_base_files }})){
+    for (i in 1:length(outpat_base_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_base_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.base_labels$Start,
+                                                                       end = SEERdb::outpat.base_labels$Stop,
+                                                                       col_names = SEERdb::outpat.base_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.base_labels$label),
+                                                   SEERdb::outpat.base_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      base_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_base_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+
+    }
+    }
+
+    # condition file
+    condition_list <- list()
+    if(!is.null({{ outpat_condition_files }})){
+    for (i in 1:length(outpat_condition_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_condition_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.condition_labels$Start,
+                                                                       end = SEERdb::outpat.condition_labels$Stop,
+                                                                       col_names = SEERdb::outpat.condition_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.condition_labels$label),
+                                                   SEERdb::outpat.condition_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      condition_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_condition_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+    }
+
+    # occurence file
+    ocurrence_list <- list()
+    if(!is.null({{ outpat_occurrence_files }})){
+    for (i in 1:length(outpat_occurrence_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_occurrence_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.occurence_labels$Start,
+                                                                       end = SEERdb::outpat.occurence_labels$Stop,
+                                                                       col_names = SEERdb::outpat.occurence_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.occurence_labels$label),
+                                                   SEERdb::outpat.occurence_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      ocurrence_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_occurrence_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+    }
+
+    # revenue file
+    revenue_list <- list()
+    if(!is.null({{ outpat_revenue_files }})){
+    for (i in 1:length(outpat_revenue_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_revenue_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.revenue_labels$Start,
+                                                                       end = SEERdb::outpat.revenue_labels$Stop,
+                                                                       col_names = SEERdb::outpat.revenue_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.revenue_labels$label),
+                                                   SEERdb::outpat.revenue_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      revenue_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_revenue_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+    }
+
+    # span file
+    span_list <- list()
+    if(!is.null({{ outpat_span_files }})){
+    for (i in 1:length(outpat_span_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_span_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.span_labels$Start,
+                                                                       end = SEERdb::outpat.span_labels$Stop,
+                                                                       col_names = SEERdb::outpat.span_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.span_labels$label),
+                                                   SEERdb::outpat.span_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      span_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_span_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+    }
+
+    # value file
+    value_list <- list()
+    if(!is.null({{ outpat_value_files }})){
+    for (i in 1:length(outpat_value_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_value_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.value_labels$Start,
+                                                                       end = SEERdb::outpat.value_labels$Stop,
+                                                                       col_names = SEERdb::outpat.value_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.value_labels$label),
+                                                   SEERdb::outpat.value_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      value_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_value_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+
+    }
+    }
+
+    # demo file
+    demo_list <- list()
+    if(!is.null({{ outpat_demo_files }})){
+    for (i in 1:length(outpat_demo_files)) {
+
+      # Get the current outpat base file
+      current_file <- paste0(db_directory, outpat_demo_files[i])
+
+      # unzip the current file
+      R.utils::gunzip(current_file,
+                      remove = FALSE)
+
+      # Get the unzipped file
+      unzip_current_file <- sub("\\.gz$", "", current_file)
+
+      # Read the data
+      read_data <- suppressWarnings(suppressMessages(readr::read_fwf(unzip_current_file,
+                                                                     col_positions = readr::fwf_positions(
+                                                                       start = SEERdb::outpat.demo_labels$Start,
+                                                                       end = SEERdb::outpat.demo_labels$Stop,
+                                                                       col_names = SEERdb::outpat.demo_labels$name
+                                                                     )
+      )))
+
+      # Add the labels
+      read_data <- labelled::set_variable_labels(read_data,
+                                                 .labels = setNames(
+                                                   as.list(SEERdb::outpat.demo_labels$label),
+                                                   SEERdb::outpat.demo_labels$name
+                                                 )
+      )
+
+      # asign the files to the base list
+      demo_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", outpat_demo_files[i])]] <- read_data
+
+      # remove the unzipped file
+      file.remove(unzip_current_file)
+    }
+    }
     # get return list
     results_list <- list(
       base = base_list,

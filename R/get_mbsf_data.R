@@ -357,11 +357,11 @@ get_mbsf_data <- function(
 
     # ab.summary file
     ab.summary_list <- list()
-
-    for (i in 1:length(mbsf_ab_summary_files)) {
+    if(!is.null({{ ab.summary_files }})){
+    for (i in 1:length(ab.summary_files)) {
 
       # Get the current hsp base file
-      current_file <- paste0(db_directory, mbsf_ab_summary_files[i])
+      current_file <- paste0(db_directory, ab.summary_files[i])
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -388,20 +388,21 @@ get_mbsf_data <- function(
       )
 
       # asign the files to the base list
-      ab.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", mbsf_ab_summary_files[i])]] <- read_data
+      ab.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", ab.summary_files[i])]] <- read_data
 
       # remove the unzipped file
       file.remove(unzip_current_file)
 
     }
+    }
 
     # ab.summary file
     abcd.summary_list <- list()
-
-    for (i in 1:length(mbsf_abcd_summary_files)) {
+    if(!is.null({{ abcd.summary_files }})){
+    for (i in 1:length(abcd.summary_files)) {
 
       # Get the current hsp base file
-      current_file <- paste0(db_directory, mbsf_abcd_summary_files[i])
+      current_file <- paste0(db_directory, abcd.summary_files[i])
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -428,20 +429,21 @@ get_mbsf_data <- function(
       )
 
       # asign the files to the base list
-      abcd.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", mbsf_abcd_summary_files[i])]] <- read_data
+      abcd.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", abcd.summary_files[i])]] <- read_data
 
       # remove the unzipped file
       file.remove(unzip_current_file)
 
     }
+    }
 
     # ab.summary file
     cc.summary_list <- list()
-
-    for (i in 1:length(mbsf_cc_summary_files)) {
+    if(!is.null({{ cc.summary_files }})){
+    for (i in 1:length(cc.summary_files)) {
 
       # Get the current hsp base file
-      current_file <- paste0(db_directory, mbsf_cc_summary_files[i])
+      current_file <- paste0(db_directory, cc.summary_files[i])
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -468,20 +470,21 @@ get_mbsf_data <- function(
       )
 
       # asign the files to the base list
-      cc.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", mbsf_cc_summary_files[i])]] <- read_data
+      cc.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", cc.summary_files[i])]] <- read_data
 
       # remove the unzipped file
       file.remove(unzip_current_file)
 
     }
+    }
 
     # ab.summary file
     oth.cc.summary_list <- list()
-
-    for (i in 1:length(mbsf_oth_cc_summary_files)) {
+    if(!is.null({{ oth.cc.summary_files }})){
+    for (i in 1:length(oth.cc.summary_files)) {
 
       # Get the current hsp base file
-      current_file <- paste0(db_directory, mbsf_oth_cc_summary_files[i])
+      current_file <- paste0(db_directory, oth.cc.summary_files[i])
 
       # unzip the current file
       R.utils::gunzip(current_file,
@@ -508,11 +511,12 @@ get_mbsf_data <- function(
       )
 
       # asign the files to the base list
-      oth.cc.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", mbsf_oth_cc_summary_files[i])]] <- read_data
+      oth.cc.summary_list[[sub("^([a-zA-Z]+\\d{4})\\..*", "\\1", oth.cc.summary_files[i])]] <- read_data
 
       # remove the unzipped file
       file.remove(unzip_current_file)
 
+    }
     }
 
     results_list <- list(
