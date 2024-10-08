@@ -479,66 +479,66 @@ build_SQL_db <- function(db_directory = ".", database = NULL) {
     #
     # }
 
-    # nch FILES
-    for (i in 1:length(nch_files)) {
-
-      cat(crayon::yellow$bold(paste0(" | Working on: ", nch_files[i])))
-
-      if (grepl("base", nch_files[i])) {
-
-        nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
-                                         nch_base_files = nch_files[i]
-        )
-
-
-        RSQLite::dbWriteTable(database,
-                              name = paste0("nch.base.", names(nch_file$base)[1]),
-                              value = as.data.frame(nch_file$base[[1]])
-        )
-
-      }
-
-      if (grepl("demo", nch_files[i])) {
-
-        nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
-                                         nch_demo_files = nch_files[i]
-        )
-
-        RSQLite::dbWriteTable(database,
-                              name = paste0("nch.demo.", names(nch_file$demo)[1]),
-                              value = as.data.frame(nch_file$demo[[1]])
-        )
-
-      }
-
-      if (grepl("line", nch_files[i])){
-
-        nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
-                                         nch_line_files = nch_files[i]
-        )
-
-        RSQLite::dbWriteTable(database,
-                              name = paste0("nch.line.", names(nch_file$line)[1]),
-                              value = as.data.frame(nch_file$line[[1]])
-        )
-
-      }
-
-      rm(nch_file)
-
-      file_i <- file_i + 1
-
-      # Print the loading bar
-      cat("\r", file_i,
-          "/",
-          num_files,
-          " Files Processed",
-          sep = ""
-      )
-
-      flush.console()
-
-    }
+    # # nch FILES
+    # for (i in 1:length(nch_files)) {
+    #
+    #   cat(crayon::yellow$bold(paste0(" | Working on: ", nch_files[i])))
+    #
+    #   if (grepl("base", nch_files[i])) {
+    #
+    #     nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
+    #                                      nch_base_files = nch_files[i]
+    #     )
+    #
+    #
+    #     RSQLite::dbWriteTable(database,
+    #                           name = paste0("nch.base.", names(nch_file$base)[1]),
+    #                           value = as.data.frame(nch_file$base[[1]])
+    #     )
+    #
+    #   }
+    #
+    #   if (grepl("demo", nch_files[i])) {
+    #
+    #     nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
+    #                                      nch_demo_files = nch_files[i]
+    #     )
+    #
+    #     RSQLite::dbWriteTable(database,
+    #                           name = paste0("nch.demo.", names(nch_file$demo)[1]),
+    #                           value = as.data.frame(nch_file$demo[[1]])
+    #     )
+    #
+    #   }
+    #
+    #   if (grepl("line", nch_files[i])){
+    #
+    #     nch_file <- SEERdb::get_nch_data(db_directory = {{ db_directory }},
+    #                                      nch_line_files = nch_files[i]
+    #     )
+    #
+    #     RSQLite::dbWriteTable(database,
+    #                           name = paste0("nch.line.", names(nch_file$line)[1]),
+    #                           value = as.data.frame(nch_file$line[[1]])
+    #     )
+    #
+    #   }
+    #
+    #   rm(nch_file)
+    #
+    #   file_i <- file_i + 1
+    #
+    #   # Print the loading bar
+    #   cat("\r", file_i,
+    #       "/",
+    #       num_files,
+    #       " Files Processed",
+    #       sep = ""
+    #   )
+    #
+    #   flush.console()
+    #
+    # }
 
     # outpat FILES
     for (i in 1:length(outpat_files)) {
