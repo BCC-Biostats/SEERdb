@@ -17,20 +17,17 @@
 #' @export
 #'
 #' @examples
-#' # Example usage with mock data
-#' df <- data.frame(
-#'   ID = c(1, 2),
-#'   start_date = as.Date(c("2022-01-01", "2022-01-01")),
-#'   end_date = as.Date(c("2022-12-31", "2022-12-31")),
-#'   claim_start_date = as.Date(c("2022-06-01", "2022-08-01")),
-#'   claim_end_date = as.Date(c("2022-06-10", "2022-08-10")),
-#'   claim_type = c("M", "M"),
-#'   dx1 = c("410", "I21"),
-#'   dx2 = c(NA, "I252")
+#' claim_data <- data.frame(
+#'   patient_id = c(1, 1, 2, 2),
+#'   claim_start = c("2015-01-01", "2016-01-01", "2016-05-01", "2017-01-01"),
+#'   claim_end = c("2015-01-15", "2016-01-15", "2016-05-15", "2017-01-15"),
+#'   dx1 = c("410", "428", "I21", "I252"),
+#'   dx2 = c(NA, "40291", "4439", NA)
 #' )
-#' result <- comorb(df, id = "ID", start_date = "start_date", end_date = "end_date",
-#'                 claim_start_date = "claim_start_date", claim_end_date = "claim_end_date",
-#'                 claim_type = "claim_type", dx_var_list = c("dx1", "dx2"))
+#' comorb(claim_data, id = "patient_id", start_date = "2015-01-01",
+#'        end_date = "2017-01-01", claim_start_date = "claim_start",
+#'        claim_end_date = "claim_end", claim_type = NULL,
+#'        dx_var_list = c("dx1", "dx2"))
 
 comorb <- function(infile, id, start_date, end_date, claim_start_date, claim_end_date,
                    claim_type, dx_var_list, ruleout = FALSE) {
