@@ -29,8 +29,7 @@
 #'        claim_end_date = "claim_end", claim_type = NULL,
 #'        dx_var_list = c("dx1", "dx2"))
 
-comorb <- function(infile, id, start_date, end_date, claim_start_date, claim_end_date,
-                   claim_type, dx_var_list, ruleout = FALSE) {
+comorb <- function(infile, id, start_date, end_date, claim_start_date, claim_end_date, dx_var_list) {
 
   conditions <- c("acute_mi", "history_mi", "chf", "pvd", "cvd", "copd",
                   "dementia", "paralysis", "diabetes", "diabetes_comp",
